@@ -36,10 +36,10 @@ jobs:
 
       # Step to upload the state file as an artifact
     - name: Upload Terraform state
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: tfstate
-        path: .terraform/
+        path: .terraform/terraform.tfstate
 
 #    - name: Clean up
 #      run: rm tfplan
