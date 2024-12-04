@@ -4,8 +4,20 @@ variable "aws_region" {
   type        = string
 }
 
+# Global tags
+variable "global_tags" {
+  description = "A map of global tags to apply to all resources"
+  type        = map(string)
+}
+
 # S3 Bucket Name
 variable "s3_bucket_name" {
+  description = "The name of the S3 bucket"
+  type        = string
+}
+
+# EC2 instance Name
+variable "ec2_instance_name" {
   description = "The name of the S3 bucket"
   type        = string
 }
