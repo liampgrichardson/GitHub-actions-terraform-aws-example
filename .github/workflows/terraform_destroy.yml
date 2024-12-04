@@ -22,9 +22,9 @@ jobs:
       # Step to download the Terraform state artifact
       - name: Download Terraform state artifact
         uses: actions/download-artifact@v4
-        with:
-          name: terraform-state
-          path: .terraform/
+#        with:
+#          name: terraform-state
+#          path: .terraform/
 
       # Step 1: Set up Terraform
       - name: Set up Terraform
