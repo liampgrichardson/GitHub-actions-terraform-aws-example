@@ -35,3 +35,31 @@ jobs:
 
     - name: Clean up
       run: rm tfplan
+
+  # Add a new job for destroying resources (Optional)
+  destroy:
+    runs-on: ubuntu-latest
+    environment: aws
+    needs: terraform  # Ensure this job runs after the apply job
+    if: ${{ github.event_name == 'workflow_dispatch' }} # Only run when triggered manually
+
+    steps:
+      # Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Step 1: Set up Terraform
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      # Step 2: Initialize Terraform
+      - name: Initialize Terraform
+        run: terraform init
+
+      # Step 3: Destroy Terraform resources
+      - name: Destroy Terraform resources
+        run: terraform destroy
+
+      # Step 4: Clean up (Optional)
+      - name: Clean up
+        run: rm -rf .terraform
