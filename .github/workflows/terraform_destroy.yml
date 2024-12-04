@@ -27,9 +27,6 @@ jobs:
       - name: Initialize Terraform
         run: terraform init
 
-#      - name: Download Terraform state from S3
-#        run: aws s3 cp s3://your-s3-bucket-name/path/to/terraform.tfstate .terraform/terraform.tfstate
-
       # Step 3: Destroy Terraform resources
       - name: Destroy Terraform resources
         run: terraform destroy -auto-approve
