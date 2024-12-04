@@ -13,6 +13,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      # Step to download the Terraform state artifact
+      - name: Download Terraform state artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: terraform-state
+          path: .terraform/
+
       # Step 1: Set up Terraform
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2
