@@ -1,0 +1,30 @@
+name: Terraform Destroy
+
+on:
+  workflow_dispatch: # Allows you to manually trigger the workflow
+
+jobs:
+  destroy:
+    runs-on: ubuntu-latest
+    environment: aws
+
+    steps:
+      # Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Step 1: Set up Terraform
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      # Step 2: Initialize Terraform
+      - name: Initialize Terraform
+        run: terraform init
+
+      # Step 3: Destroy Terraform resources
+      - name: Destroy Terraform resources
+        run: terraform destroy -auto-approve
+
+      # Step 4: Clean up (Optional)
+      - name: Clean up
+        run: rm -rf .terraform
