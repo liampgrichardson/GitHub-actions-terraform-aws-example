@@ -2,9 +2,6 @@ name: Terraform Deploy
 
 on:
   workflow_dispatch: # Allows you to manually trigger the workflow
-#  push:
-#    branches:
-#      - main
 
 jobs:
   terraform:
@@ -34,12 +31,8 @@ jobs:
     - name: Apply Terraform changes
       run: terraform apply --auto-approve
 
-      # Step to upload the state file as an artifact
-    - name: Upload Terraform state
-      uses: actions/upload-artifact@v3
-      with:
-        name: tfstate
-        path: .terraform/terraform.tfstate
+#    - name: Upload Terraform state to S3
+#      run: aws s3 cp .terraform/terraform.tfstate s3://your-s3-bucket-name/path/to/terraform.tfstate
 
     - name: Clean up
       run: rm tfplan

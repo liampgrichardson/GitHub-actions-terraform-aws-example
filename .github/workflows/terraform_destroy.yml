@@ -27,12 +27,8 @@ jobs:
       - name: Initialize Terraform
         run: terraform init
 
-      # Step to download the Terraform state artifact
-      - name: Download Terraform state artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: tfstate
-          path: .terraform/
+#      - name: Download Terraform state from S3
+#        run: aws s3 cp s3://your-s3-bucket-name/path/to/terraform.tfstate .terraform/terraform.tfstate
 
       # Step 3: Destroy Terraform resources
       - name: Destroy Terraform resources
