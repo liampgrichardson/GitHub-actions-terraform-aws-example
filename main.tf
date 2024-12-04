@@ -1,43 +1,25 @@
-terraform {
-  backend "s3" {
-    bucket         = "s306022024"
-    key            = "terraform.tfstate"
-    region         = "eu-west-1"
-  }
-}
-
+# Define the provider
 provider "aws" {
   region = var.aws_region
 }
 
-data "aws_ami" "amazon_linux" {
-  most_recent = true
-  owners      = ["amazon"]
+# S3 Bucket
+resource "aws_s3_bucket" "my_bucket" {
+  bucket = var.s3_bucket_name
+  acl    = "private"
 
-  filter {
-    name   = "name"
-    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+  tags = {
+    Name        = "MyBucket"
+    Environment = "Dev"
   }
 }
 
-resource "aws_instance" "example" {
-  ami           = data.aws_ami.amazon_linux.id
+# EC2 Instance
+resource "aws_instance" "my_instance" {
+  ami           = var.ami_id
   instance_type = var.instance_type
-  key_name      = var.key_name
 
   tags = {
-    Name = var.name
-  }
-
-  user_data = <<-EOF
-              #!/bin/bash
-              sudo yum -y update
-              sudo yum -y install httpd
-              sudo systemctl start httpd
-              sudo systemctl enable httpd
-              EOF
-
-  lifecycle {
-    create_before_destroy = true
+    Name = "MyEC2Instance"
   }
 }

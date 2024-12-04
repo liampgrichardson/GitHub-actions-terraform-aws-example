@@ -1,23 +1,24 @@
+# AWS Region
 variable "aws_region" {
-  description = "AWS region"
-  default     = "eu-west-1"
+  description = "The AWS region to deploy resources in"
+  type        = string
 }
 
-variable "instance_type" {
-  description = "EC2 instance type"
-  default     = "t2.micro"
-}
-
-variable "key_name" {
-  description = "Name of the existing EC2 key pair"
-  default = "2023"
-}
-
+# S3 Bucket Name
 variable "s3_bucket_name" {
-  description = "Name of the S3 bucket for remote state"
-  default = "tfdemo16112023"
+  description = "The name of the S3 bucket"
+  type        = string
 }
 
-variable "name" {
-  description = "Name of EC2 Intance"
+# EC2 Instance Type
+variable "instance_type" {
+  description = "The instance type for EC2"
+  type        = string
+  default     = "t2.nano"
+}
+
+# AMI ID
+variable "ami_id" {
+  description = "The AMI ID for the EC2 instance"
+  type        = string
 }
