@@ -41,5 +41,5 @@ jobs:
         name: tfstate
         path: .terraform/terraform.tfstate
 
-#    - name: Clean up
-#      run: rm tfplan
+    - name: Clean up
+      run: rm tfplan
