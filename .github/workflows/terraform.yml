@@ -31,8 +31,5 @@ jobs:
     - name: Apply Terraform changes
       run: terraform apply --auto-approve
 
-#    - name: Upload Terraform state to S3
-#      run: aws s3 cp .terraform/terraform.tfstate s3://your-s3-bucket-name/path/to/terraform.tfstate
-
     - name: Clean up
       run: rm tfplan
